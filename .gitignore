@@ -1,0 +1,4 @@
+*.pyc
+.eggs
+.tox
+tempest_tripleo_ui.egg-info
