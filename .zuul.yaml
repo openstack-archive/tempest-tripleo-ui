@@ -1,5 +1,5 @@
 - project:
     templates:
       - check-requirements
+      - openstack-python-jobs
       - release-notes-jobs-python3
-      - noop-jobs
