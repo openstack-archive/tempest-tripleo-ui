@@ -1,0 +1,3 @@
+sphinx # BSD
+openstackdocstheme>=1.24.1 # Apache-2.0
+reno # Apache-2.0
