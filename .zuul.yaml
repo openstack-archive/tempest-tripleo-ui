@@ -1,5 +1,5 @@
 - project:
     templates:
       - check-requirements
+      - tempest-plugin-jobs
       - release-notes-jobs-python3
-      - noop-jobs
