@@ -1,5 +1,5 @@
 - project:
     templates:
       - check-requirements
-      - release-notes-jobs
+      - release-notes-jobs-python3
       - noop-jobs
