@@ -13,29 +13,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from six.moves.urllib import request
-
 from tempest import config
-from tempest import test
-
+from tempest_tripleo_ui.base import GUITestCase
 
 CONF = config.CONF
 
 
-class TestBasic(test.BaseTestCase):
+class TestBasic(GUITestCase):
 
-    """Checks that the UI is available"""
-
-    opener = None
-
-    def check_if_ui_accessible(self):
-        response = self._get_opener().open(CONF.tripleo_ui.url).read()
-        self.assertIn('tripleo_ui_config.js', response)
-
-    def _get_opener(self):
-        if not self.opener:
-            self.opener = request.build_opener(request.HTTPCookieProcessor())
-        return self.opener
-
-    def test_basic_scenario(self):
-        self.check_if_ui_accessible()
+    def test_basic_plugin_functionality(self):
+        pass
