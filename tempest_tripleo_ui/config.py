@@ -21,5 +21,9 @@ ui_group = cfg.OptGroup(name='tripleo_ui', title='TripleO UI Options')
 
 UIGroup = [
     cfg.StrOpt('url', default='http://localhost',
-               help='where the TripleO UI can be found')
+               help='where the TripleO UI can be found'),
+    cfg.StrOpt('webdriver', default='Chrome',
+               help='the browser to use for the test [Chrome/Marionette]'),
+    cfg.StrOpt('marionette_binary', default='path_to_wires',
+               help='path to the marionette driver binary')
 ]
