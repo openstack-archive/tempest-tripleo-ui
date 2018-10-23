@@ -3,3 +3,6 @@
       - check-requirements
       - tempest-plugin-jobs
       - release-notes-jobs-python3
+    check:
+      jobs:
+        - tripleo-ci-centos-7-undercloud-oooq-selenium
