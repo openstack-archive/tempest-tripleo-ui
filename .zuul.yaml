@@ -3,3 +3,4 @@
       - check-requirements
       - tempest-plugin-jobs
       - release-notes-jobs-python3
+      - tripleo-ci-centos-7-undercloud-containers
