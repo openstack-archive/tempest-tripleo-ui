@@ -17,6 +17,10 @@ from tempest_tripleo_ui.core import SeleniumElement, Identifier
 
 
 plan_names = {}
+kebab_menus = {}
+delete_plans = {}
+edit_plans = {}
+export_plans = {}
 
 
 def plan_header(idx):
@@ -27,6 +31,41 @@ def plan_header(idx):
             '/div'
             '/h2[@class="card-pf-title"])[{}]'.format(idx + 1))
     return plan_names[str(idx)]
+
+
+def kebab_menu(plan_name):
+    global kebab_menus
+    if plan_name not in kebab_menus:
+        kebab_menus[plan_name] = SeleniumElement.by_xpath(
+            '//button[@id="card-actions-{}"]'.format(plan_name))
+    return kebab_menus[plan_name]
+
+
+def delete_plan(plan_name):
+    global delete_plans
+    if plan_name not in delete_plans:
+        delete_plans[plan_name] = SeleniumElement.by_xpath(
+            '//ul[contains(@class, "dropdown-menu")]'
+            '/li/a[@href="/plans/manage/{}/delete"]'.format(plan_name))
+    return delete_plans[plan_name]
+
+
+def edit_plan(plan_name):
+    global edit_plans
+    if plan_name not in edit_plans:
+        edit_plans[plan_name] = SeleniumElement.by_xpath(
+            '//ul[contains(@class, "dropdown-menu")]'
+            '/li/a[@href="/plans/manage/{}/edit"]'.format(plan_name))
+    return edit_plans[plan_name]
+
+
+def export_plan(plan_name):
+    global export_plans
+    if plan_name not in export_plans:
+        export_plans[plan_name] = SeleniumElement.by_xpath(
+            '//ul[contains(@class, "dropdown-menu")]'
+            '/li/a[@href="/plans/manage/{}/export"]'.format(plan_name))
+    return export_plans[plan_name]
 
 
 navbar_item = SeleniumElement.by_id('NavBar__PlansTab')
@@ -42,3 +81,22 @@ all_plan_names = Identifier.xpath(
 active_plan_flag = SeleniumElement.by_xpath(
     '//div[contains(@class, "active") '
     'and contains(@class, "plan-card")]')
+
+plan_name = SeleniumElement.by_id(
+    "planName")
+plan_from_default_templates = SeleniumElement.by_xpath(
+    '//input[@value="default"]')
+plan_from_local_directory = SeleniumElement.by_xpath(
+    '//input[@value="directory"]')
+plan_from_tarball = SeleniumElement.by_xpath(
+    '//input[@value="tarball"]')
+plan_from_git = SeleniumElement.by_xpath(
+    '//input[@value="git"]')
+browse_button_local_directory = SeleniumElement.by_id(
+    'files')
+browse_button_tarball = SeleniumElement.by_id(
+    'tarball')
+upload_files_button = SeleniumElement.by_id(
+    'NewPlanForm_submitButton')
+cancel_upload_button = SeleniumElement.by_id(
+    'NewPlanForm__cancelCreatePlanButton')
