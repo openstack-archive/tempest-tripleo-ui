@@ -166,7 +166,7 @@ class SeleniumElement(object):
 
     @selenium_action
     def get_text(self, webelement):
-        return webelement.text
+        return webelement.text.encode('utf-8')
 
     def get_all_text(self):
         text = self.get_text()
@@ -325,8 +325,8 @@ class SeleniumElement(object):
         elements = None
         try:
             elements = webelement.find_elements(
-                by=self.identifier.by,
-                value=self.identifier.identifier)
+                by=identifier.by,
+                value=identifier.identifier)
         except BaseException:
             return None
 
@@ -347,6 +347,14 @@ class SeleniumElement(object):
                         elem_from, elem_to).perform())
         else:
             logger.error("drag-n-drop: items are not visible")
+
+    @selenium_action
+    def get_available_selections(self, webelement):
+        sel = select.Select(webelement)
+        options = []
+        for option in sel.options:
+            options.append(option.text.encode('utf-8'))
+        return options
 
     @selenium_action
     def deselect_all(self, webelement):
