@@ -24,6 +24,10 @@ UIGroup = [
                help='where the TripleO UI can be found'),
     cfg.StrOpt('webdriver', default='Chrome',
                help='the browser to use for the test [Chrome/Marionette]'),
+    cfg.StrOpt('use_remote', default=True,
+               help='Use a remote selenium instance'),
+    cfg.StrOpt('remote_path', default='http://localhost:4444/wd/hub',
+               help='The http path to the remote selenium instance'),
     cfg.StrOpt('marionette_binary', default='path_to_wires',
                help='path to the marionette driver binary')
 ]

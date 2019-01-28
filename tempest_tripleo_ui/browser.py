@@ -22,7 +22,10 @@ def get_browser():
         return browser
 
     browser_driver = CONF.tripleo_ui.webdriver
-    if browser_driver.lower() == "chrome":
+
+    if CONF.tripleo_ui.use_remote:
+        browser_factory = RemoteFactory(CONF.tripleo_ui.remote_path)
+    elif browser_driver.lower() == "chrome":
         browser_factory = ChromeFactory()
     elif browser_driver.lower() == "firefox":
         browser_factory = MarionetteFactory(
@@ -109,3 +112,15 @@ class MarionetteFactory(object):
         args['capabilities'] = capabilities
         args['executable_path'] = self.path_to_binary
         return webdriver.Firefox(**args)
+
+
+class RemoteFactory(object):
+
+    def __init__(self, path):
+        self.path = path
+
+    def create(self):
+        return webdriver.Remote(
+            self.path,
+            desired_capabilities=DesiredCapabilities.CHROME
+        )
